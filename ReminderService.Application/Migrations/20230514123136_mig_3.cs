@@ -5,25 +5,18 @@
 namespace ReminderService.Application.Migrations
 {
     /// <inheritdoc />
-    public partial class mig_2 : Migration
+    public partial class mig_3 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<bool>(
-                name: "Sent",
-                table: "Reminders",
-                type: "boolean",
-                nullable: false,
-                defaultValue: false);
+
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Sent",
-                table: "Reminders");
+
         }
     }
 }

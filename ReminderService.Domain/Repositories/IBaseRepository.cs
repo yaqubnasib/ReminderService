@@ -8,9 +8,12 @@ namespace ReminderService.Domain.Repositories
         Task<T> GetByIdAsync(int id, bool tracking = true);
         IQueryable<T> Where(Expression<Func<T, bool>> expression, bool tracking = true);
         IQueryable<T> GetAll(bool tracking = true);
-        Task<bool> AddAsyc(T entity);
+        Task<bool> AddAsync(T entity);
         bool Update(T entity);
         bool Remove(T entity);
         void RemoveRange(IEnumerable<T> entities);
+        void RemoveRange(ICollection<int> ids);
+        Task<int> SaveChangesAsync();
+        int SaveChanges();
     }
 }

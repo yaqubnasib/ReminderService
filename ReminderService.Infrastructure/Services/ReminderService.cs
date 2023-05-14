@@ -17,9 +17,10 @@ namespace ReminderService.Infrastructure.Services
         }
 
 
-        public Reminder CreateReminder(Reminder reminder)
+        public async Task<Reminder> CreateReminderAsync(Reminder reminder)
         {
-            _reminderRepository.AddAsyc(reminder);
+            await _reminderRepository.AddAsync(reminder);
+            await _reminderRepository.SaveChangesAsync();
             _backgroundJobClient.Schedule<ReminderJob>(j => j.SendReminder(reminder.Id), reminder.SendAt);
             return reminder;
         }

@@ -18,7 +18,7 @@ namespace ReminderService.Application.Repositories
 
         protected DbSet<T> Table => _context.Set<T>();
 
-        public async Task<bool> AddAsyc(T entity)
+        public async Task<bool> AddAsync(T entity)
         {
             EntityEntry<T> entry = await Table.AddAsync(entity);
             return entry.State == EntityState.Added;
@@ -63,6 +63,15 @@ namespace ReminderService.Application.Repositories
 
         public void RemoveRange(IEnumerable<T> entities)
         {
+            Table.RemoveRange(entities);
+        }
+
+        public int SaveChanges() => _context.SaveChanges();
+        public async Task<int> SaveChangesAsync() => await _context.SaveChangesAsync();
+
+        public async Task RemoveRangeAsync(ICollection<int> ids)
+        {
+            List<T> entities = await Table.Where(x => ids.Contains(x.Id) == true).ToListAsync();
             Table.RemoveRange(entities);
         }
     }

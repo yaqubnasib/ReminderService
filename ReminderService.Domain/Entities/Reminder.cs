@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ReminderService.Domain.Entities
+﻿namespace ReminderService.Domain.Entities
 {
     public class Reminder : BaseEntity
     {
@@ -12,6 +6,6 @@ namespace ReminderService.Domain.Entities
         public string Content { get; set; }
         public DateTime SendAt { get; set; }
         public string Method { get; set; }
-        public bool Sended { get; set; }
+        public bool Sent { get; set; }
     }
 }

@@ -41,7 +41,7 @@ namespace ReminderService.Application.Migrations
                     b.Property<DateTime>("SendAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<bool>("Sended")
+                    b.Property<bool>("Sent")
                         .HasColumnType("boolean");
 
                     b.Property<string>("To")

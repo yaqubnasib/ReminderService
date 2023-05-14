@@ -21,9 +21,10 @@ namespace ReminderService.Infrastructure.Services
             var strategy = _reminderStrategyFactory.CreateStrategy(reminder.Method);
 
             await strategy.SendReminderAsync(reminder);
-            reminder.Sended = true;
+            reminder.Sent = true;
 
             _reminderRepository.Update(reminder);
+            await _reminderRepository.SaveChangesAsync();
         }
     }
 }

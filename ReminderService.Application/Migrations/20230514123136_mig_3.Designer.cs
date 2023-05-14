@@ -12,8 +12,8 @@ using ReminderService.Application.Contexts;
 namespace ReminderService.Application.Migrations
 {
     [DbContext(typeof(ReminderContext))]
-    [Migration("20230514110042_mig_2")]
-    partial class mig_2
+    [Migration("20230514123136_mig_3")]
+    partial class mig_3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

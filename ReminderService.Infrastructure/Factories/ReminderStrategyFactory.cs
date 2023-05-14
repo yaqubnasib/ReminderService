@@ -23,7 +23,7 @@ namespace ReminderService.Infrastructure.Factories
         {
             return method switch
             {
-                StrategyConstants.TelegramStrategy => _serviceProvider.GetRequiredService<TelegramReminderService>(),
+                StrategyConstants.TelegramStrategy => _serviceProvider.GetRequiredService<TelegramReminderStrategy>(),
                 //StrategyConstants.EmailStrategy => _serviceProvider.GetRequiredService<>
             };
         }
