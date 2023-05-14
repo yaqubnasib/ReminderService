@@ -44,7 +44,8 @@ namespace ReminderService.API.Controllers
             };
 
             await _reminderService.CreateReminderAsync(reminder);
-            return CreatedAtAction(nameof(GetReminder), new { id = reminder.Id }, reminder);
+            //return CreatedAtAction(nameof(GetReminder), new { id = reminder.Id }, reminder);
+            return Ok(reminder);
         }
 
 
@@ -72,12 +73,6 @@ namespace ReminderService.API.Controllers
             return NoContent();
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> Delete([FromQuery] ICollection<int> ids)
-        {
-            await _reminderService.RemoveRangeAsync(ids);
-            return NoContent();
-        }
 
     }
 }
