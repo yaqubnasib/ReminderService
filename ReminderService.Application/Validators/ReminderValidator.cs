@@ -1,11 +1,10 @@
 ﻿using FluentValidation;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using ReminderService.Domain.Entities;
+using ReminderService.Domain.Models;
 using ReminderService.Domain.Utils;
 
 namespace ReminderService.Application.Validators
 {
-    public class ReminderValidator : AbstractValidator<Reminder>
+    public class ReminderValidator : AbstractValidator<ReminderCommandRequest>
     {
         public ReminderValidator()
         {
@@ -26,7 +25,7 @@ namespace ReminderService.Application.Validators
             RuleFor(x => x.Method)
                 .NotEmpty()
                 .WithMessage("Reminder's 'Method' field cannot be empty.")
-                .Must(x => x.ToLower() == "email" || x.ToLower() == "telegram")
+                .Must(x => x.ToLower() == StrategyConstants.EmailStrategy || x.ToLower() == StrategyConstants.TelegramStrategy)
                 .WithMessage("Reminder's 'Method' field must be either 'email' or 'telegram'.");
 
             When(x => x.Method.ToLower() == StrategyConstants.EmailStrategy, () =>

@@ -21,8 +21,4 @@
     <ProjectReference Include="..\ReminderService.Infrastructure\ReminderService.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Middlewares\" />
-  </ItemGroup>
-
 </Project>

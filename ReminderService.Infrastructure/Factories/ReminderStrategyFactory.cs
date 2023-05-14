@@ -24,7 +24,8 @@ namespace ReminderService.Infrastructure.Factories
             return method switch
             {
                 StrategyConstants.TelegramStrategy => _serviceProvider.GetRequiredService<TelegramReminderStrategy>(),
-                //StrategyConstants.EmailStrategy => _serviceProvider.GetRequiredService<>
+                StrategyConstants.EmailStrategy => _serviceProvider.GetRequiredService<EmailReminderStrategy>(),
+                _ => throw new ArgumentException($"Invalid reminder method: {method}", nameof(method))
             };
         }
     }

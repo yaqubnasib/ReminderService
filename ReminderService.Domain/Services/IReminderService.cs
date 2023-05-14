@@ -5,10 +5,10 @@ namespace ReminderService.Domain.Services
     public interface IReminderService
     {
         Task<Reminder> CreateReminderAsync(Reminder reminder);
-        Task<ICollection<Reminder>> GetAllAsync();
+        IQueryable<Reminder> GetAll();
         Task<Reminder> GetByIdAsync(int id);
-        bool Update(Reminder reminder);
-        void RemoveRange(IEnumerable<Reminder> reminders);
+        Task<bool> UpdateAsync(Reminder reminder);
+        Task RemoveRangeAsync(ICollection<int> reminderIds);
 
     }
 }

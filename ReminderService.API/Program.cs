@@ -1,6 +1,7 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Hangfire;
+using ReminderService.API.Middlewares;
 using ReminderService.Application;
 using ReminderService.Application.Filters;
 using ReminderService.Application.Validators;
@@ -13,7 +14,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers(options =>
 {
     options.Filters.Add<ValidationFilter>();
-}).Services.AddValidatorsFromAssemblyContaining<ReminderValidator>();
+}).Services.AddValidatorsFromAssemblyContaining<ReminderValidator>()
+.AddFluentValidationAutoValidation()
+.AddFluentValidationClientsideAdapters();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddApplicationServices();
@@ -39,5 +42,6 @@ if (app.Environment.IsDevelopment())
 app.UseHangfireDashboard();
 app.UseHttpsRedirection();
 app.UseAuthorization();
+app.UseExceptionHandlerMiddleware(app.Services.GetRequiredService<ILogger<Program>>());
 app.MapControllers();
 app.Run();

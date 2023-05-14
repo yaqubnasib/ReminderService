@@ -20,9 +20,29 @@ namespace ReminderService.Infrastructure.Services
         public async Task<Reminder> CreateReminderAsync(Reminder reminder)
         {
             await _reminderRepository.AddAsync(reminder);
-            await _reminderRepository.SaveChangesAsync();
             _backgroundJobClient.Schedule<ReminderJob>(j => j.SendReminder(reminder.Id), reminder.SendAt);
+            await _reminderRepository.SaveChangesAsync();
             return reminder;
         }
+
+        public IQueryable<Reminder> GetAll()
+            => _reminderRepository.GetAll();
+
+        public async Task<Reminder> GetByIdAsync(int id)
+            => await _reminderRepository.GetByIdAsync(id);
+
+        public async Task RemoveRangeAsync(ICollection<int> reminderIds)
+        {
+            await _reminderRepository.RemoveRangeAsync(reminderIds);
+            await _reminderRepository.SaveChangesAsync();
+        }
+        public async Task<bool> UpdateAsync(Reminder reminder)
+        {
+            var result = _reminderRepository.Update(reminder);
+            await _reminderRepository.SaveChangesAsync();
+
+            return result;
+        }
+
     }
 }

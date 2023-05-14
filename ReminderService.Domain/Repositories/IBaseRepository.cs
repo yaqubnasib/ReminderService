@@ -12,7 +12,7 @@ namespace ReminderService.Domain.Repositories
         bool Update(T entity);
         bool Remove(T entity);
         void RemoveRange(IEnumerable<T> entities);
-        void RemoveRange(ICollection<int> ids);
+        Task RemoveRangeAsync(ICollection<int> ids);
         Task<int> SaveChangesAsync();
         int SaveChanges();
     }

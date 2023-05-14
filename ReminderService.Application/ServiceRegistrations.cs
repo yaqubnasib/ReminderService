@@ -12,8 +12,7 @@ namespace ReminderService.Application
         public static void AddApplicationServices(this IServiceCollection services)
         {
             services.AddDbContext<ReminderContext>(options => options.UseNpgsql(Config.ReminderConnectionString));
-            services.AddSingleton<IReminderRepository, ReminderRepository>();
-            services.AddValidatorsFromAssemblyContaining<ReminderValidator>();
+            services.AddScoped<IReminderRepository, ReminderRepository>();
         }
     }
 }
