@@ -31,6 +31,10 @@ namespace ReminderService.API.Controllers
             return Ok(_reminderService.GetAll());
         }
 
+        [HttpGet]
+        [Route("action")]
+
+        public IActionResult GetDate() => Ok(DateTime.UtcNow);
 
         [HttpPost]
         public async Task<IActionResult> Create(ReminderCommandRequest request)

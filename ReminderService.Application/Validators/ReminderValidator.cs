@@ -19,7 +19,7 @@ namespace ReminderService.Application.Validators
             RuleFor(x => x.SendAt)
                 .NotEmpty()
                 .WithMessage("Reminder's 'SendAt' field cannot be empty.")
-                .GreaterThanOrEqualTo(DateTime.Now)
+                .GreaterThanOrEqualTo(DateTime.UtcNow)
                 .WithMessage("Reminder's 'SendAt' field cannot be in the past.");
 
             RuleFor(x => x.Method)
