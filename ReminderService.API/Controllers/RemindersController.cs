@@ -72,7 +72,5 @@ namespace ReminderService.API.Controllers
             await _reminderService.RemoveRangeAsync(ids);
             return NoContent();
         }
-
-
     }
 }

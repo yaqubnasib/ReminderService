@@ -15,7 +15,7 @@ namespace ReminderService.Infrastructure.Services
 
         public async Task SendReminderAsync(Reminder reminder)
         {
-            MailMessage mailMessage = new("hulya.garibli@apertech.net", reminder.To, "Reminder", reminder.Content);
+            MailMessage mailMessage = new("<>", reminder.To, "Reminder", reminder.Content);
             await _smtpClient.SendMailAsync(mailMessage);
         }
     }
